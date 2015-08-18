@@ -49,6 +49,7 @@ import com.android.systemui.recents.model.RecentsPackageMonitor;
 import com.android.systemui.recents.model.RecentsTaskLoader;
 import com.android.systemui.recents.model.Task;
 import com.android.systemui.recents.model.TaskStack;
+import com.android.systemui.doze.ShakeSensorManager;
 
 import com.android.systemui.R;
  
@@ -66,7 +67,7 @@ import java.util.ArrayList;
  * to their SpaceNode bounds.
  */
 public class RecentsView extends FrameLayout implements TaskStackView.TaskStackViewCallbacks,
-        RecentsPackageMonitor.PackageCallbacks {
+        RecentsPackageMonitor.PackageCallbacks,ShakeSensorManager.ShakeListener {
 
     /** The RecentsView callbacks */
     public interface RecentsViewCallbacks {
@@ -92,7 +93,13 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
 
     private ActivityManager mAm;
     private int mTotalMem;
+<<<<<<< HEAD
     
+=======
+
+    private ShakeSensorManager mShakeSensorManager;
+
+>>>>>>> 1d7b66e... Squashed: base:Clean recent task by shake(1/2)
     public RecentsView(Context context) {
         super(context);
     }
@@ -111,6 +118,20 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
         mInflater = LayoutInflater.from(context);
         mAm = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         mTotalMem = getTotalMemory();
+        mShakeSensorManager = new ShakeSensorManager(mContext, this);
+    }
+
+    @Override
+    public synchronized void onShake() {
+        dismissAllTasksAnimated();
+    }
+
+    public void enableShake(boolean enableShakeClean) {
+        if (enableShakeClean) {
+            mShakeSensorManager.enable(20);
+        } else {
+            mShakeSensorManager.disable();
+        }
     }
 
     /** Sets the callbacks */
@@ -358,6 +379,7 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
                     MeasureSpec.makeMeasureSpec(searchBarSpaceBounds.width(), MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(searchBarSpaceBounds.height(), MeasureSpec.EXACTLY));
 
+<<<<<<< HEAD
             int paddingSearchBar = searchBarSpaceBounds.height() + 25;
 
             if (enableMemDisplay) {
@@ -373,6 +395,17 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
             }
          }
          showMemDisplay();
+=======
+            boolean enableMemDisplay = Settings.System.getInt(resolver,
+                    Settings.System.SYSTEMUI_RECENTS_MEM_DISPLAY, 1) == 1;
+            int padding = enableMemDisplay
+                    ? searchBarSpaceBounds.height() + 25
+                    : mContext.getResources().getDimensionPixelSize(R.dimen.status_bar_header_height);
+            mMemBar.setPadding(0, padding, 0, 0);
+        }
+
+        showMemDisplay();
+>>>>>>> 1d7b66e... Squashed: base:Clean recent task by shake(1/2)
 
                 boolean showClearAllRecents = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.SHOW_CLEAR_ALL_RECENTS, 1, UserHandle.USER_CURRENT) != 0;
@@ -488,9 +521,33 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
         }
     }
 
+<<<<<<< HEAD
     private boolean dismissAll() {
         return Settings.System.getInt(mContext.getContentResolver(),
             Settings.System.RECENTS_CLEAR_ALL_DISMISS_ALL, 1) == 1;
+=======
+    public void startFABanimation() {
+        // Animate the action button in
+        mClearRecents = ((View)getParent()).findViewById(R.id.clear_recents);
+        mClearRecents.animate().alpha(1f)
+                .setStartDelay(mConfig.taskBarEnterAnimDelay)
+                .setDuration(mConfig.taskBarEnterAnimDuration)
+                .setInterpolator(mConfig.fastOutLinearInInterpolator)
+                .withLayer()
+                .start();
+    }
+
+    public void endFABanimation() {
+        // Animate the action button away
+        enableShake(false);
+        mClearRecents = ((View)getParent()).findViewById(R.id.clear_recents);
+        mClearRecents.animate().alpha(0f)
+                .setStartDelay(0)
+                .setDuration(mConfig.taskBarExitAnimDuration)
+                .setInterpolator(mConfig.fastOutLinearInInterpolator)
+                .withLayer()
+                .start();
+>>>>>>> 1d7b66e... Squashed: base:Clean recent task by shake(1/2)
     }
 
     @Override
@@ -698,6 +755,7 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
         final Runnable launchRunnable = new Runnable() {
             @Override
             public void run() {
+                enableShake(false);
                 if (task.isActive) {
                     // Bring an active task to the foreground
                     ssp.moveTaskToFront(task.key.id, launchOpts);

@@ -4714,6 +4714,12 @@ public final class Settings {
         public static final String PIE_TRIGGER_SENSITIVITY = "pie_trigger_sensitivity";
 
         /**
+         * Clean recent by shake
+         * @hide
+         */
+        public static final String SHAKE_CLEAN_RECENT = "shake_clean_recent";
+
+        /**
          * Option to launch slim actions in floating mode
          * @hide
          */
