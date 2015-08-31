@@ -4383,12 +4383,17 @@ public final class Settings {
          */
         public static final String DOZE_PULSE_ON_NOTIFICATIONS = "doze_pulse_on_notifications";
 
-	   /**
+  	/**Clean recent by shake
+ 	@hide
+         */
+        public static final String SHAKE_CLEAN_RECENT = "shake_clean_recent";
+	 /**
          * Config for advanced power menu
          *
          * @hide
          */
         public static final String QUICK_TILE_CONFIG = "quick_tile_config";
+
 
         /**
          * Shake threshold for ambient display
@@ -4788,25 +4793,25 @@ public final class Settings {
         public static final String STATUS_BAR_CUSTOM_HEADER_PROVIDER = "status_bar_custom_header_provider";
 
          /**
-         * Change the color of the lockscreen bottom camera shortcut
+         * Change the color of the lockscreen bottom shortcut
          *
          * @hide
          */
-        public static final String LOCKSCREEN_CAMERA_ICON_COLOR = "lockscreen_camera_icon_color";
+        public static final String LOCKSCREEN_BOTTOM_ICONS_COLOR = "lockscreen_bottom_icons_color";
 
         /**
-         * Change the color of the lockscreen bottom phone shortcut
+         * Change the color of the lockscreen owner's info text
          *
          * @hide
          */
-        public static final String LOCKSCREEN_PHONE_ICON_COLOR = "lockscreen_phone_icon_color";
+        public static final String LOCKSCREEN_OWNER_INFO_COLOR = "lockscreen_owner_info_color";
 
         /**
-         * Change the color of the lockscreen lock icon
+         * Change the color of the lockscreen alarm text
          *
          * @hide
          */
-        public static final String LOCKSCREEN_LOCK_ICON_COLOR = "lockscreen_lock_icon_color";
+        public static final String LOCKSCREEN_ALARM_COLOR = "lockscreen_alarm_color";
 
         /**
          * Change the color of the lockscreen indication text
@@ -10029,4 +10034,5 @@ public final class Settings {
         return "android-" + Long.toHexString(androidId);
     }
 }
+
 
