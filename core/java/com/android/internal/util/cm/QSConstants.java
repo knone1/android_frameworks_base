@@ -67,7 +67,8 @@ public class QSConstants {
     public static final String TILE_SYSTEMUI_RESTART = "reboot_systemui";
     public static final String TILE_SLIM_FLOATS = "slim_floats";
     public static final String TILE_THEMES = "toggleThemes";
-    public static final String TILE_CONFIGURATIONS = "Configurations"; 	 
+    public static final String TILE_CONFIGURATIONS = "Configurations"; 
+    public static final String TILE_SELINUX = "Selinux";	 
 
     public static final String DYNAMIC_TILE_NEXT_ALARM = "next_alarm";
     public static final String DYNAMIC_TILE_IME_SELECTOR = "ime_selector";
@@ -124,6 +125,7 @@ public class QSConstants {
         STATIC_TILES_AVAILABLE.add(TILE_SLIM_FLOATS);
  	STATIC_TILES_AVAILABLE.add(TILE_THEMES);
 	STATIC_TILES_AVAILABLE.add(TILE_CONFIGURATIONS);
+	STATIC_TILES_AVAILABLE.add(TILE_SELINUX);
 
         DYNAMIC_TILES_AVAILABLE.add(DYNAMIC_TILE_NEXT_ALARM);
         DYNAMIC_TILES_AVAILABLE.add(DYNAMIC_TILE_IME_SELECTOR);
