@@ -27,4 +27,3 @@
             android:fromAlpha="0.0" android:toAlpha="1.0"
             android:duration="@android:integer/config_activityShortDur" />
 </set>
-
