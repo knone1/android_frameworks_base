@@ -4067,50 +4067,7 @@ public final class Settings {
         @ChaosLab(name="GestureAnywhere", classification=Classification.NEW_FIELD)
         public static final String GESTURE_ANYWHERE_CHANGED = "gesture_anywhere_changed";
 
-<<<<<<< HEAD
 	/**
-=======
-        /**
-         * show carrier in statusbar. The value is
-         * int (1: Show or 0: Hide).
-         */
-        public static final String STATUS_BAR_CARRIER = "status_bar_carrier";
-
-        /**
-         * custom carrier label. The value is
-         * String.
-         */
-        public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
-
-        /**
-         * Change the color of the lockscreen bottom shortcuts
-         *
-         * @hide
-         */
-        public static final String LOCKSCREEN_BOTTOM_ICONS_COLOR = "lockscreen_bottom_icons_color";
-
-        /**
-         * Change the color of the lockscreen owner's info text
-         *
-         * @hide
-         */
-        public static final String LOCKSCREEN_OWNER_INFO_COLOR = "lockscreen_owner_info_color";
-
-        /**
-         * Change the color of the lockscreen alarm text
-         *
-         * @hide
-         */
-        public static final String LOCKSCREEN_ALARM_COLOR = "lockscreen_alarm_color";
-
-        /**
-         * Carrier Label Custom Color
-         * @hide
-         */
-        public static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
-
-        /**
->>>>>>> 23a158e...  Clean up the lockscreen colors / fix bottom shortcuts
          * Settings for carrier label font size
          * @hide
         */

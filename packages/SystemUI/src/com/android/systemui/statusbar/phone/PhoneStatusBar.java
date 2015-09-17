@@ -552,16 +552,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-<<<<<<< HEAD
                     Settings.System.STATUS_BAR_CARRIER), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_LOGO),
-=======
-                    Settings.System.LOCKSCREEN_BOTTOM_ICONS_COLOR),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_AICP_LOGO),
->>>>>>> 23a158e...  Clean up the lockscreen colors / fix bottom shortcuts
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_LOGO_COLOR),
@@ -650,31 +643,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.NOTIFICATION_DRAWER_CLEAR_ALL_ICON_COLOR))) {
                     UpdateNotifDrawerClearAllIconColor();
             } else if (uri.equals(Settings.System.getUriFor(
-<<<<<<< HEAD
-=======
-                    Settings.System.STATUS_BAR_SHOW_TICKER))) {
-                    mTickerEnabled = Settings.System.getIntForUser(
-                        mContext.getContentResolver(),
-                        Settings.System.STATUS_BAR_SHOW_TICKER,
-                        mContext.getResources().getBoolean(R.bool.enable_ticker)
-                        ? 1 : 0, UserHandle.USER_CURRENT) == 1;
-                initTickerView();
-             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.LOCKSCREEN_BOTTOM_ICONS_COLOR))) {
-                setBottomIconsColors();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.PIE_CONTROLS))) {
-                    attachPieContainer(isPieEnabled());
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.USE_SLIM_RECENTS))) {
-                updateRecents();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.RECENT_CARD_BG_COLOR))
-                    || uri.equals(Settings.System.getUriFor(
-                    Settings.System.RECENT_CARD_TEXT_COLOR))) {
-                rebuildRecentsScreen();
-            } else if (uri.equals(Settings.System.getUriFor(
->>>>>>> 23a158e...  Clean up the lockscreen colors / fix bottom shortcuts
                     Settings.System.ENABLE_TASK_MANAGER))) {
                     mShowTaskManager = Settings.System.getIntForUser(
                             mContext.getContentResolver(),
@@ -1713,11 +1681,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 new Intent(pm.isScreenOn() ? Intent.ACTION_SCREEN_ON : Intent.ACTION_SCREEN_OFF));
 
         startGlyphRasterizeHack();
-<<<<<<< HEAD
 
-=======
-        setBottomIconsColors();
->>>>>>> 23a158e...  Clean up the lockscreen colors / fix bottom shortcuts
         mStatusBarHeaderMachine = new StatusBarHeaderMachine(mContext);
         mStatusBarHeaderMachine.addObserver(mHeader);
         mStatusBarHeaderMachine.updateEnablement();
@@ -2879,15 +2843,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             .start();
                 }
             }
-        }
-    }
-
-    public void setBottomIconsColors() {
-        int iconColor =
-                Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_BOTTOM_ICONS_COLOR, 0xffffffff);
-        if (mKeyguardBottomArea != null) {
-            mKeyguardBottomArea.updateIconColor(iconColor);
         }
     }
 
